@@ -4,7 +4,6 @@
 #include "ReversePolish.h"
 
 // DECLARATION OF STACK STRUCT
- 
 struct element{
 	struct data DATA;		// Data type field
 	struct element *next;		// Pointer that stores next stack position
@@ -13,7 +12,6 @@ struct element{
 typedef struct element Elem;		// Default name for struct element
 
 // BASIC STACK FUNCTIONS 
-
 Stack* createStack(){       // Stack creation function
     Stack* ST = (Stack*) malloc(sizeof(Stack));
     if (ST != NULL){
@@ -74,7 +72,6 @@ int accessTopStack(Stack* ST, struct data *DT){     // Top of stack access funct
 }
 
 // REVERSE POLISH NOTATION FUNCTIONS
-
 float operations(float A, float B, int OP){     // Function where operations take place
     switch (OP){
     case '+':{
