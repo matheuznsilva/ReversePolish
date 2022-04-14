@@ -3,18 +3,18 @@
 #include <string.h>
 #include "ReversePolish.h"
 
-//Definição do tipo lista
-
+// DECLARATION OF STACK STRUCT
+ 
 struct element{
-	struct data DATA;		// campo do tipo aluno que recebe o dado a ser armazenado
-	struct element *next;		// ponteiro do tipo elemento que indica o proximo elemento 
+	struct data DATA;		// Data type field
+	struct element *next;		// Pointer that stores next stack position
 };
 
-typedef struct element Elem;		// definição de um nome padrão para a struct elemento
+typedef struct element Elem;		// Default name for struct element
 
+// BASIC STACK FUNCTIONS 
 
-
-Stack* createStack(){
+Stack* createStack(){       // Stack creation function
     Stack* ST = (Stack*) malloc(sizeof(Stack));
     if (ST != NULL){
         *ST = NULL;
@@ -22,7 +22,7 @@ Stack* createStack(){
     return ST;
 }
 
-void freeStack(Stack* ST){
+void freeStack(Stack* ST){      // Stack destruction function
     if (ST != NULL){
         Elem* NO;
         while ((*ST)!= NULL){
@@ -34,30 +34,7 @@ void freeStack(Stack* ST){
     }
 }
 
-int sizeStack(Stack* ST){
-    if(ST == NULL){
-        return 0;
-    }
-    int COUNT = 0;
-    Elem* NO = *ST;
-    while (NO != NULL){
-        COUNT++;
-        NO = NO->next;
-    }
-    return COUNT;    
-}
-
-int emptyStack(Stack* ST){
-    if(ST == NULL){
-        return 1;
-    }
-    if(*ST == NULL){
-        return 1;
-    }
-    return 0;
-}
-
-int insertStack(Stack* ST, struct data DT){
+int insertStack(Stack* ST, struct data DT){     // Stack insertion function (Remembering that stack is LIFO)
     if(ST == NULL){
         return 0;
     }
@@ -72,7 +49,7 @@ int insertStack(Stack* ST, struct data DT){
     return 1;
 }
 
-int removeStack(Stack* ST){
+int removeStack(Stack* ST){     // Stack removal function (Removal always happens from the top)
     if(ST == NULL){
         return 0;
     }
@@ -85,7 +62,7 @@ int removeStack(Stack* ST){
     return 1;
 }
 
-int accessTopStack(Stack* ST, struct data *DT){
+int accessTopStack(Stack* ST, struct data *DT){     // Top of stack access function
     if(ST == NULL){
         return 0;
     }if((*ST) == NULL){
@@ -96,7 +73,9 @@ int accessTopStack(Stack* ST, struct data *DT){
     return 1;
 }
 
-float operations(float A, float B, int OP){
+// REVERSE POLISH NOTATION FUNCTIONS
+
+float operations(float A, float B, int OP){     // Function where operations take place
     switch (OP){
     case '+':{
         return A + B;
@@ -119,10 +98,9 @@ float operations(float A, float B, int OP){
     }
 }
 
-float expression(Stack* ST, char EXP[]){
+float expression(Stack* ST, char EXP[]){        // Expression decoding function  
     char *auxP;
     struct data DT, DATA_1, DATA_2;
-
     auxP = strtok(EXP, " ");
     while (auxP){
         if(auxP[0] == '+' || auxP[0] == '-' || auxP[0] == '*' || auxP[0] == '/'){

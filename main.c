@@ -15,5 +15,8 @@ int main(){
     }
     
     printf("\nO RESULTADO DA EXPRESSÃO É: %.2f\n\n", expression(ST, EXP));
+    
+    fclose(F);
+    freeStack(ST);
     return 0;
 }
