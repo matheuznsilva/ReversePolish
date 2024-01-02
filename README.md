@@ -5,8 +5,8 @@ This repository contains the practical work of the Algorithm and Data Structure 
 ## Requirements
 
 <div>
-  <img src="https://img.shields.io/badge/Gcc-323330?style=for-the-badge&amp;logo=Gcc&amp;logoColor=white" alt="GCC">
   <img src="https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&amp;logo=C&amp;logoColor=white" alt="C">
+  <img src="https://img.shields.io/badge/Gcc-323330?style=for-the-badge&amp;logo=Gcc&amp;logoColor=white" alt="GCC">
 </div>
 
 ## Installation
