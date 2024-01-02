@@ -1,14 +1,24 @@
-main:	main.o	ReversePolish.o
-	gcc main.o ReversePolish.o -o main
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c11
+TARGET = main
+SRCDIR = src
+BUILDDIR = build
 
-main.o:	main.c
-	gcc -c main.c
+SRCS = $(wildcard $(SRCDIR)/*.c)
+OBJS = $(patsubst $(SRCDIR)/%.c,$(BUILDDIR)/%.o,$(SRCS))
 
-ReversePolish.o:	ReversePolish.c	ReversePolish.h
-	gcc -c ReversePolish.c
+$(TARGET): $(OBJS)
+	$(CC) $(OBJS) -o $@
+
+$(BUILDDIR)/%.o: $(SRCDIR)/%.c | $(BUILDDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
 
 clean:
-	rm *.o
+	rm -rf $(BUILDDIR) $(TARGET)
 
-run:
-	./main
+run: $(TARGET)
+	./$(TARGET)
+
